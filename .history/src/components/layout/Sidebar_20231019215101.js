@@ -6,6 +6,7 @@ import {
   FaRegCalendar,
 } from "react-icons/fa";
 
+
 export const Sidebar = () => {
   return (
     <div className="sidebar" data-testid="sidebar">
@@ -41,8 +42,8 @@ export const Sidebar = () => {
         </span>
         <h2>Projects</h2>
       </div>
-      <ul className="sidebar__projects">Projects will be here!</ul>
-      Add Project Component Here !!
+
+      <ul className="sidebar__projects"></ul>
     </div>
   );
 };
