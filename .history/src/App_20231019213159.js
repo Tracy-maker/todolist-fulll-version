@@ -5,7 +5,7 @@ export const App = () => {
   return (
     <div>
       <Header />
-      <Content />
+      <Content/>
     </div>
   );
 };
