@@ -5,7 +5,6 @@ import { collatedTasksExist } from "../helpers";
 
 export const useTasks = (selectedProject) => {
   const [tasks, setTasks] = useState([]);
-  const [archivedTasks, setArchivedTasks] = useState([]);
 
   useEffect(() => {
     let unsubscribe = firebase
@@ -32,40 +31,8 @@ export const useTasks = (selectedProject) => {
         ...task.data(),
       }));
 
-      setTasks(
-        selectedProject === "NEXT_7"
-          ? newTasks.filter(
-              (task) =>
-                moment(task.date, "DD-MM-YYYY").diff(moment(), "day") <= 7 &&
-                task.archived !== true
-            )
-          : newTasks.filter((task) => task.archived !== true)
-      );
-      setArchivedTasks(newTasks.filter((task) => task.archived !== false));
+      setTasks(selectedProject === "NEXT_7"
+      ? newTasks.filter(task => moment(task.date,"DD-MM-YYYY")));
     });
-    return () => unsubscribe();
   }, [selectedProject]);
-
-  return { tasks, archivedTasks };
-};
-
-export const useProjects = () => {
-  const [projects, setProjects] = useState([]);
-  useEffect(() => {
-    firebase
-      .firestore()
-      .collection("projects")
-      .where("userId", "==", "hfhsw3RNSGunsu")
-      .orderBy("projectId")
-      .get()
-      .then((snapshot) => {
-        const allProjects = snapshot.docs.map((project) => ({
-          ...project.data(),
-          docId: project.id,
-        }));
-        if (JSON.stringify(allProjects) !== JSON.stringify(projects)) {
-          setProjects(allProjects);
-        }
-      });
-  }, [projects]);
 };

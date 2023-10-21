@@ -57,15 +57,13 @@ export const useProjects = () => {
       .collection("projects")
       .where("userId", "==", "hfhsw3RNSGunsu")
       .orderBy("projectId")
-      .get()
-      .then((snapshot) => {
-        const allProjects = snapshot.docs.map((project) => ({
+      .get().then((snapshot) => {
+        const allProjects = snapshot.docs.map(project =>({
           ...project.data(),
-          docId: project.id,
-        }));
-        if (JSON.stringify(allProjects) !== JSON.stringify(projects)) {
-          setProjects(allProjects);
-        }
-      });
-  }, [projects]);
-};
+          docId:project.id,
+       }));
+       if(JSON.stringify(allProjects) !== JSON.stringify(projects)) {
+        setProjects(allProjects);
+      }
+  });
+},[projects]);
