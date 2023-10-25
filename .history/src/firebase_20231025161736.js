@@ -20,4 +20,4 @@ const app = initializeApp(firebaseConfig);
 // Access Firestore using getFirestore
 const firestore = getFirestore(app);
 
-export default firestore;
+export default firestore;◊
