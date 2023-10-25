@@ -68,5 +68,5 @@ export const useProjects = () => {
         }
       });
   }, [projects]);
-  return { projects, setProjects };
+  return {projects, setProjects}
 };
